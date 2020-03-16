@@ -1,4 +1,6 @@
 module CodeWars where
+import Data.Char
+
 
 
 -- solution "abc" `shouldBe` ["ab", "c_"]
@@ -13,10 +15,13 @@ solution' [] = []
 solution' (x:[]) = [[x,'_']]
 solution' (x:y:xs) = [x,y]:(solution xs)
 
-tribonacci :: Num a => (a, a, a) -> Int -> [a]
-tribonacci (a, _, _) 1 = [a]
-tribonacci (a, b, _) 2 = [a, b]
-tribonacci (a, b, c) 3 = [a, b, c]
+{-tribonacci _ n | n < 1 = []
+tribonacci (a, b, c) n = a : tribonacci (b, c, a+b+c) (n-1)-}
 
--- tribonacci' :: Num a => Int->[a]
--- tribonacci' 
+tribonacci :: Num a => (a, a, a) -> Int -> [a]
+tribonacci _ n | n < 1 = []
+tribonacci (a, b, c) n = a : tribonacci (b, c, a+b+c) (n-1)
+
+titleCase :: String -> String -> String
+titleCase minor title = let lowMinor = words $ map toLower minor
+                            lowTitle = words $ map toLower title in undefined
